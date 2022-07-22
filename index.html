@@ -1,0 +1,86 @@
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+
+<style>
+  #map-container {
+      height: 800px;
+      min-width: 610px;
+      max-width: 1100px;
+      margin: 0 auto;
+  }
+  .loading {
+      margin-top: 11em;
+      text-align: center;
+      color: gray;
+  }
+</style>
+
+<body>
+  <div id="map-container"></div>
+</body>
+
+<script>
+
+  // Map Demo
+  // Data is joined to map using value of 'hc-key' property by default.
+  // See API docs for 'joinBy' for more info on linking data and map.
+  var data = [
+        ['us-ma', 1936447], ['us-wa', 1692004], ['us-ca', 10357177], ['us-or', 828442],
+        ['us-wi', 1744108], ['us-me', 272100], ['us-mi', 2619533], ['us-nv', 782040],
+        ['us-nm', 574117], ['us-co', 1561859], ['us-wy', 165619], ['us-ks', 812329],
+        ['us-ne', 506223], ['us-ok', 1082397], ['us-mo', 289345], ['us-il', 3480965],
+        ['us-in', 1790544], ['us-vt', 136145], ['us-ar', 879614], ['us-tx', 7298410],
+        ['us-ri', 405589], ['us-al', 1382137], ['us-ms', 850618], ['us-nc', 2892680],
+        ['us-va', 1902133], ['us-ia', 907607], ['us-md', 1151423], ['us-de', 288279],
+        ['us-pa', 3021110], ['us-nj', 2527086], ['us-ny', 5856749], ['us-id',468973],
+        ['us-sd', 245705], ['us-ct', 838159], ['us-nh', 334576], ['us-ky', 1421037],
+        ['us-oh', 2867291], ['us-tn', 2149540], ['us-wv', 540192], ['us-dc', 159055],
+        ['us-la', 1335684], ['us-fl', 6645935], ['us-ga', 2667557], ['us-sc', 1573585],
+        ['us-mn', 1561487], ['us-mt', 289345], ['us-nd', 252296], ['us-az', 2145765],
+        ['us-ut', 989767], ['us-hi', 313076], ['us-ak', 264237], [null, 61], [null, 62],
+        [null, 63], [null, 64], [null, 65], [null, 66], [null, 67], [null, 68],
+        [null, 69]
+  ];
+
+  // Create the chart
+  Highcharts.mapChart('map-container', {
+    chart: {
+        map: 'countries/us/us-all'
+    },
+
+    title: {
+        text: 'US COVID Cases <a href="http://code.highcharts.com/mapdata/countries/us/us-all.topo.json">Map Demo'
+    },
+
+    subtitle: {
+        text:'As of July 13th, 2022</a>'
+    },
+
+    mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+            verticalAlign: 'top'
+        }
+    },
+
+    colorAxis: {
+        min: 0
+    },
+
+    series: [{
+        data: data,
+        name: 'US Map',
+        states: {
+            hover: {
+                color: '#ff0000'
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+        }
+    }]
+  });
+
+  </script>
